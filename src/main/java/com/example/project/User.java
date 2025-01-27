@@ -1,24 +1,57 @@
 package com.example.project;
 
 public class User{
-    //requires 3 private attributes String name, String Id, Book book that is initialized to empty
+   
+    private String name;
+    private String id;
+    private Book[] books = new Book[5];
+    
+    //constructor
+ public User(String name, String id) {
+    this.name = name;
+    this.id = id;
+ }
+      //setters and getters
+     public String getName() {
+        return name;
+     }
 
-    //requires 1 contructor with two parameters that will initialize the name and id
- 
-    // public  getName() {}
+     public void setName(String name) {
+        this.name = name;
+     }
 
-    // public  setName() {}
+     public String getId() {
+        return id;
+     }
 
-    // public  getId() {}
+     public void setId(String id) {
+        this.id = id;
+     }
 
-    // public void setId() {}
+     public Book[] getBooks() {
+        return books;
+     }
 
-    // public getBooks() {}
+     public void setBooks(Book[] books) {
+        this.books = books;
+     }
 
-    // public setBooks() {}
-
-    // public String bookListInfo(){} //returns a booklist for the user, if empty, output "empty"
-
-    // public String userInfo(){} //returns  "Name: []\nID: []\nBooks:\n[]"
+     public String bookListInfo() {
+      String bookList = "";
+      for (Book books : books) {
+          if (books == null) {
+              bookList += "empty";
+              bookList += "\n";
+          } else {
+              bookList += books.bookInfo();
+              bookList += "\n";
+          }
+      }
+      return bookList;
+  }
+      //returns the userinfo and book info
+     public String userInfo(){
+        return "Name: " + name + "\nId: " + id + "\nBooks: " + "\n" + bookListInfo();
+     } 
        
 }

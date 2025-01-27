@@ -1,31 +1,113 @@
 package com.example.project;
 
 public class BookStore{
+    //creating the 2 arrays
+    User[] users = new User[10];
+    Book[] books = new Book[5];
+   //setters and getters
+    public BookStore() {
+    }
 
-    //requires at least 2 attributes Book[] books, User[] users (initialized to an empty array of 10 max users) 
+     public User[] getUsers(){
+        return users;
+     }
 
-    //requires 1 empty constructor
+     public void setUsers(User[] users){
+        this.users = users;
+     }
 
-    // public getUsers(){}
+     public Book[] getBooks(){
+        return books;
+     }
+     //add a user
+     public void addUser(User user){
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] == null) {
+                users[i] = user;
+                break;
+            } 
+        }
+     } 
+     //allows you to remove a user
+     public void removeUser(User user) {
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] != null && users[i].equals(user)) {
+                users[i] = null;
+                break;
+            }
+        }
+        consolidateUsers();
+    }
+    //fill out the empty spots in the userlist
+     public void consolidateUsers(){
+        User[] newUser = new User[users.length];
+        int nextspot=0;
+        for (User nextUser : users) {
+            if (nextUser != null) {
+                newUser[nextspot] = nextUser;
+                nextspot++;
+            }
+        }
+        users = newUser;
+    }
+    //allows you to add a book to the bookstore
+    public void addBook(Book book) {
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] == null) {
+                books[i] = book;
+                break;
+            }
+        }
+    }
 
-    // public setUsers(){}
+    // Insert a book at a specific index in the books array
+    public void insertBook(Book book, int index) {
+        if (index < 0 || index >= books.length) {
+            throw new IndexOutOfBoundsException("Index out of bounds.");
+        }
 
-    // public  getBooks(){}
 
-    // public void addUser(User user){} 
+        if (books[index] == null) {
+            books[index] = book;
+        } else {
+            for (int i = books.length - 1; i > index; i--) {
+                books[i] = books[i - 1];
+            }
+            books[index] = book;
+        }
+    }
 
-    // public void removeUser(User user){}
 
-    // public void consolidateUsers(){}
 
-    // public void addBook(Book book){}
-
-    // public void insertBook(Book book, int index){}
-
-    // public void removeBook(Book book){}
+    // Remove a book from the books array
+    public void removeBook(Book book) {
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] == book) {
+                books[i].setQuantity(books[i].getQuantity() - 1);
+                if (books[i].getQuantity() == 0) {
+                    books[i] = null;
+                    consolidateBooks();
+                }
+            }
+        }
+    }
+    //fill in the empty spots of the book array
+        public void consolidateBooks() {
+            int bookCount = 0;
+            for (Book book : books) {
+                if (book != null) {
+                    bookCount++;
+                }
+            }
+            Book[] tempBooks = new Book[bookCount];
+            int index = 0;
+            for (int i = 0; i < books.length; i++) {
+                if (books[i] != null) {
+                    tempBooks[index] = books[i];
+                    index++;
+                }
+            }
+            books = tempBooks;
+        }
+    }
        
-    // public String bookStoreBookInfo(){} //you are not tested on this method but use it for debugging purposes
-
-    // public String bookStoreUserInfo(){} //you are not tested on this method but use it for debugging purposes
-
-}

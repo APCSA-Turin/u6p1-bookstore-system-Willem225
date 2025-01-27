@@ -1,30 +1,61 @@
 package com.example.project;
 
 public class Book{
-    //requires 5 attributes String title, String author, int yearPublished, String isbn, int quantity
+    private String title;
+    private String author;
+    private int yearPublished;
+    private String isbn;
+    private int quantity;
 
-    //requires 1 constructor with 5 arguments that intitialize the attribtues of the class.
+    public Book (String title, String author, int yearPublished, String isbn, int quantity) {
+        this.title=title;
+        this.author = author;
+        this.yearPublished = yearPublished;
+        this.isbn = isbn;
+        this.quantity = quantity;
+    }
+    //setters and getters for Book
+     public String getTitle() {
+        return title;
+    }
 
-    // public  getTitle() {}
+     public void setTitle(String title) {
+        this.title = title;
+     }
 
-    // public setTitle() {}
+     public String getAuthor() {
+        return author;
+     }
 
-    // public getAuthor() {}
+     public void setAuthor(String author) {
+        this.author = author;
+     }
 
-    // public setAuthor() {}
+     public int getYearPublished() {
+        return yearPublished;
+     }
 
-    // public getYearPublished() {}
+     public void setYearPublished(int yearPublished) {
+        this.yearPublished = yearPublished;
+     }
 
-    // public setYearPublished() {}
+     public String getIsbn() {
+        return isbn;
+     }
 
-    // public getIsbn() {}
+     public void setIsbn(String isbn) {
+        this.isbn = isbn;
+     }
 
-    // public void setIsbn() {}
+     public int getQuantity() {
+        return quantity;
+     }
 
-    // public int getQuantity() {}
-
-    // public void setQuantity() {}
-
-    // public  bookInfo(){} //returns "Title: [], Author: [], Year: [], ISBN: [], Quantity: []"
-       
+     public void setQuantity(int quantity) {
+        this.quantity = quantity;
+     }
+     //returns the book info
+     public String bookInfo(){
+        return "Title: " + title + ", " + "Author: "  + author + ", " + "Year: "  + yearPublished + ", " + "ISBN: " + isbn + ", " + "Quantity: " + quantity;
+    }     
 }
